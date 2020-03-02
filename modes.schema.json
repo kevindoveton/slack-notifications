@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "mode name",
+
+  "additionalProperties": {
+    "required": ["order", "overrides"],
+    "additionalProperties": false,
+
+    "properties": {
+      "inherits": {
+        "type": "string"
+      },
+
+      "order": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "show",
+            "hide",
+            "overrides"
+          ]
+        }
+      },
+
+      "overrides": {
+        "type": "object",
+        "propertyNames": {
+          "pattern": "^(@|#)([a-z]|[A-Z]|[0-9]|-)+$"
+        },
+        "additionalProperties": {
+          "anyOf": [{
+            "$ref": "#/definitions/rule"
+          }, {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rule"
+            }
+          }]
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "rule": {
+      "type": "object",
+      "required": ["type"],
+
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["show", "hide"]
+        },
+        "after": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        },
+
+        "before": {
+          "type": "string",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+        },
+
+        "day": {
+          "type": "string",
+          "pattern": "^(mon|tues|wed|thurs|fri|sat|sun)(-(mon|tues|wed|thurs|fri|sat|sun))?$"
+        }
+      }
+    }
+  }
+}

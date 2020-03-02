@@ -1,0 +1,6 @@
+.env
+.idea
+generated
+.DS_Store
+*.app
+snotification

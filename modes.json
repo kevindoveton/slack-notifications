@@ -1,0 +1,42 @@
+{
+  "$schema": "./modes.schema.json",
+
+  "default": {
+    "order": ["show", "overrides"],
+    "overrides": {
+      "@food": [{
+          "day": "mon-sun",
+          "before": "08:45",
+          "type": "hide"
+        },
+        {
+          "day": "mon-sun",
+          "type": "hide",
+          "after": "10:30",
+          "before": "11:30"
+        }, {
+          "day": "mon-sun",
+          "type": "hide",
+          "after": "13:30"
+        }
+      ]
+    }
+  },
+
+  "focus": {
+    "order": ["hide", "overrides"],
+    "overrides": {
+      "@chris": {
+        "type": "show"
+      },
+      "@tangles": {
+        "type": "show"
+      }
+    }
+  },
+
+  "chatty": {
+    "order": ["show", "overrides"],
+    "overrides": {}
+  }
+}
